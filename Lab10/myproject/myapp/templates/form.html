@@ -19,22 +19,27 @@
         <div class="card shadow border-0 rounded-4">
             <div class="card-body p-5">
 
-                <div class="mb-4">
-                    <label class="form-label fw-bold">ชื่อ-นามสกุล</label>
-                    <input type="text" class="form-control form-control-lg"
-                           placeholder="กรุณากรอกชื่อ-นามสกุล">
-                </div>
+                <form method="post" action="/form">
+                    {% csrf_token %}
 
-                <div class="mb-4">
-                    <label class="form-label fw-bold">อายุ</label>
-                    <input type="number" class="form-control form-control-lg"
-                           placeholder="กรอกข้อมูลอายุเป็นตัวเลข">
-                </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">ชื่อ-นามสกุล</label>
+                        <input type="text" class="form-control form-control-lg"
+                               name="name" placeholder="กรุณากรอกชื่อ-นามสกุล">
+                    </div>
 
-                <div class="d-flex gap-3 mt-4">
-                    <button class="btn btn-success btn-lg w-100">ลงทะเบียน</button>
-                    <button class="btn btn-danger btn-lg w-100">ล้างข้อมูล</button>
-                </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">อายุ</label>
+                        <input type="number" class="form-control form-control-lg"
+                               name="age" placeholder="กรอกข้อมูลอายุเป็นตัวเลข">
+                    </div>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="submit" class="btn btn-success btn-lg w-100">ลงทะเบียน</button>
+                        <button type="reset" class="btn btn-danger btn-lg w-100">ล้างข้อมูล</button>
+                    </div>
+
+                </form>
 
             </div>
         </div>
