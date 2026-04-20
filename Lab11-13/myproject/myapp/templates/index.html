@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>หน้าแรก — ICT12367 SPU</title>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<div class="hero-section text-center py-5 px-4 mb-5">
+    <div class="position-relative" style="z-index:1;">
+        <div class="mb-3">
+            <span style="background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); border-radius:20px; padding:0.3rem 1rem; font-size:0.82rem; font-weight:600; letter-spacing:1px;">
+                ICT12367 · SPU
+            </span>
+        </div>
+        <h1 class="display-4 fw-bold mb-3" style="letter-spacing:-1px;">
+            ระบบจัดการข้อมูลประชากร
+        </h1>
+        <p class="lead mb-4" style="color:#94a3b8; max-width:520px; margin:0 auto 1.5rem;">
+            บันทึก ค้นหา และจัดการข้อมูลประชากรได้อย่างรวดเร็วและมีประสิทธิภาพ
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="/form" class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-person-plus me-2"></i>เพิ่มข้อมูลใหม่
+            </a>
+            <a href="/about" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-images me-2"></i>แกลเลอรี่
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Cards -->
+<div class="row g-3 mb-5">
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">👥</div>
+            <div style="font-size:1.75rem; font-weight:700; font-family:'Prompt',sans-serif; color:#f1f5f9;">{{ all_person|length }}</div>
+            <div style="color:#94a3b8; font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">จำนวนประชากร</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📋</div>
+            <div style="font-size:1.75rem; font-weight:700; font-family:'Prompt',sans-serif; color:#f1f5f9;">CRUD</div>
+            <div style="color:#94a3b8; font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">ฟีเจอร์ครบครัน</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">🔍</div>
+            <div style="font-size:1.75rem; font-weight:700; font-family:'Prompt',sans-serif; color:#f1f5f9;">Live</div>
+            <div style="color:#94a3b8; font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">ค้นหาได้ทันที</div>
+        </div>
+    </div>
+</div>
+
+<!-- Table Section -->
+<div class="section-title">
+    <i class="bi bi-table" style="color:#3b82f6;"></i>
+    ข้อมูลประชากรทั้งหมด
+</div>
+
+<!-- Search -->
+<div class="search-wrapper d-flex align-items-center gap-3 flex-wrap">
+    <form action="" method="GET" class="d-flex gap-2 flex-grow-1" style="max-width:420px;">
+        <div class="input-group">
+            <span class="input-group-text" style="background:var(--surface2); border-color:var(--border); color:var(--text-muted);">
+                <i class="bi bi-search"></i>
+            </span>
+            <input class="form-control" type="search" name="q"
+                   placeholder="ค้นหาชื่อหรืออายุ..."
+                   value="{{ request.GET.q }}">
+        </div>
+        <button class="btn btn-primary" type="submit">ค้นหา</button>
+        <a href="/" class="btn btn-outline-secondary">
+            <i class="bi bi-x-lg"></i>
+        </a>
+    </form>
+    <a href="/form" class="btn btn-success ms-auto">
+        <i class="bi bi-plus-lg me-1"></i>เพิ่มข้อมูล
+    </a>
+</div>
+
+<!-- Table -->
+<div class="card" style="overflow:hidden;">
+    <div style="overflow-x:auto;">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ชื่อ-นามสกุล</th>
+                    <th scope="col">อายุ</th>
+                    <th scope="col">วันที่บันทึก</th>
+                    <th scope="col" class="text-center">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for person in all_person %}
+            <tr>
+                <td><span class="badge-id">{{ person.id }}</span></td>
+                <td>
+                    <div style="font-weight:600;">{{ person.name }}</div>
+                </td>
+                <td>
+                    <span style="color:#94a3b8;">{{ person.age }} ปี</span>
+                </td>
+                <td>
+                    <span style="color:#94a3b8; font-size:0.85rem;">
+                        <i class="bi bi-calendar3 me-1"></i>{{ person.date|date:"j M Y" }}
+                    </span>
+                </td>
+                <td class="text-center">
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="/edit/{{ person.id }}/" class="btn btn-action-edit">
+                            <i class="bi bi-pencil me-1"></i>แก้ไข
+                        </a>
+                        <a href="/delete/{{ person.id }}/" class="btn btn-action-delete"
+                           onclick="return confirm('ยืนยันการลบข้อมูล?')">
+                            <i class="bi bi-trash me-1"></i>ลบ
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center py-5">
+                    <div style="color:#94a3b8;">
+                        <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                        ไม่พบข้อมูลที่ค้นหา
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
