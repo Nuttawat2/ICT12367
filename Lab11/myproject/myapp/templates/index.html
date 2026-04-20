@@ -67,21 +67,21 @@
         </tr>
     </thead>
     <tbody>
-        {% for person in all_person %}
-        <tr>
-            <th scope="row">{{ person.id }}</th>
-            <td>{{ person.name }}</td>
-            <td>{{ person.age }}</td>
-            <td>{{ person.date|date:"F j, Y" }}</td>
-            <td class="text-center">
-                <a href="#" class="btn" style="background-color: #e91e8c; color: white;">แก้ไข</a>
-            </td>
-            <td class="text-center">
-                <a href="#" class="btn" style="background-color: #ff6600; color: white;">ลบ</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
+    {% for person in all_person %}
+    <tr>
+        <th scope="row">{{ person.id }}</th>
+        <td>{{ person.name }}</td>
+        <td>{{ person.age }}</td>
+        <td>{{ person.date|date:"F j, Y" }}</td>
+        <td class="text-center">
+            <a href="/edit/{{ person.id }}/" class="btn" style="background-color: #e91e8c; color: white;">แก้ไข</a>
+        </td>
+        <td class="text-center">
+            <a href="/delete/{{ person.id }}/" class="btn" style="background-color: #ff6600; color: white;">ลบ</a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
 </table>
 
 {% endblock %}
