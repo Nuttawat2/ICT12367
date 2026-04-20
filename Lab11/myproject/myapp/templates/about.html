@@ -1,72 +1,100 @@
 {% extends "base.html" %}
 
 {% block title %}
-<title>เกี่ยวกับเรา</title>
+<title>แกลเลอรี่ — ICT12367 SPU</title>
 {% endblock %}
 
 {% block content %}
 
 <!-- Header -->
-<div class="text-center py-4 px-4 rounded-4 text-white mb-5"
-     style="background: linear-gradient(135deg, #1a6fc4, #0d3b6e);">
-    <h2 class="fw-bold display-5">แกลเลอรี่ของเรา</h2>
-    <p class="lead">ภาพถ่ายสวยงามจากทั่วทุกมุมโลก</p>
+<div class="hero-section text-center py-4 px-4 mb-5">
+    <div class="position-relative" style="z-index:1;">
+        <h2 class="fw-bold mb-2" style="font-size:1.8rem;">
+            <i class="bi bi-images me-2" style="color:#60a5fa;"></i>แกลเลอรี่
+        </h2>
+        <p style="color:#94a3b8; margin:0;">ภาพถ่ายสวยงามจากทั่วทุกมุมโลก</p>
+    </div>
 </div>
 
-<!-- Gallery Grid -->
+<!-- Gallery -->
 <div class="row g-3 mb-5">
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img1">
+    {% with imgs="https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg,https://cdn.pixabay.com/photo/2017/01/28/02/24/japan-2014618_1280.jpg,https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg,https://cdn.pixabay.com/photo/2017/08/01/11/48/blue-2564660_1280.jpg" %}
+    {% endwith %}
+
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img1">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2017/01/28/02/24/japan-2014618_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img2">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2017/01/28/02/24/japan-2014618_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img2">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img3">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img3">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2017/08/01/11/48/blue-2564660_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img4">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2017/08/01/11/48/blue-2564660_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img4">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img5">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2017/02/08/17/24/fantasy-2049567_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img5">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2017/01/28/02/24/japan-2014618_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img6">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2016/10/20/18/35/sunrise-1756274_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img6">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img7">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img7">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2017/08/01/11/48/blue-2564660_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img8">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img8">
+        </div>
     </div>
 
-    <div class="col-md-4">
-        <img src="https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg"
-             class="img-fluid rounded-3 shadow-sm w-100" style="height:220px; object-fit:cover;" alt="img9">
+    <div class="col-md-4 col-6">
+        <div class="card" style="overflow:hidden; padding:0;">
+            <img src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg"
+                 class="img-fluid w-100" style="height:200px; object-fit:cover; display:block;" alt="img9">
+        </div>
     </div>
 
 </div>
 
-<!-- ปุ่มเชื่อมหน้าอื่น -->
+<!-- Back -->
 <div class="text-center mb-5">
-    <a href="/" class="btn btn-dark btn-lg me-3 px-4">หน้าแรก</a>
-    <a href="/form" class="btn btn-outline-dark btn-lg px-4">กรอกแบบฟอร์ม</a>
+    <a href="/" class="btn btn-outline-secondary btn-lg me-3 px-4">
+        <i class="bi bi-house me-2"></i>หน้าแรก
+    </a>
+    <a href="/form" class="btn btn-primary btn-lg px-4">
+        <i class="bi bi-person-plus me-2"></i>เพิ่มข้อมูล
+    </a>
 </div>
 
 {% endblock %}

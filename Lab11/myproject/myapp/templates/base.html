@@ -4,28 +4,345 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     {% block title %}{% endblock %}
-</head>
-<body class="bg-light">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --accent-glow: rgba(59,130,246,0.15);
+            --surface: #1e293b;
+            --surface2: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --border: rgba(148,163,184,0.12);
+        }
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            font-family: 'Sarabun', sans-serif;
+            font-size: 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background: rgba(15,23,42,0.85) !important;
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.85rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand span {
+            color: var(--accent);
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.9rem !important;
+            border-radius: 8px;
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+        }
+
+        .nav-link:hover {
+            color: var(--text) !important;
+            background: var(--accent-glow);
+        }
+
+        /* ── MAIN CONTENT ── */
+        .main-content {
+            flex: 1;
+            padding: 2.5rem 0 4rem;
+        }
+
+        /* ── CARDS ── */
+        .card {
+            background: var(--surface) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 16px !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.4) !important;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            font-family: 'Sarabun', sans-serif;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 0.45rem 1.1rem;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .btn-outline-secondary {
+            color: var(--text-muted);
+            border-color: var(--surface2);
+        }
+
+        .btn-outline-secondary:hover {
+            background: var(--surface2);
+            color: var(--text);
+            border-color: var(--surface2);
+        }
+
+        /* ── TABLES ── */
+        .table {
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .table thead th {
+            background: var(--surface);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 1.2rem;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+
+        .table tbody tr:hover {
+            background: var(--surface) !important;
+        }
+
+        .table tbody td, .table tbody th {
+            padding: 0.9rem 1.2rem;
+            vertical-align: middle;
+        }
+
+        /* ── FORMS ── */
+        .form-control, .form-select {
+            background: var(--surface) !important;
+            border: 1px solid var(--border) !important;
+            color: var(--text) !important;
+            border-radius: 10px;
+            font-family: 'Sarabun', sans-serif;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 3px var(--accent-glow) !important;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted) !important;
+            opacity: 0.6;
+        }
+
+        .form-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── HERO ── */
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 60%, #1a1040 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* ── SECTION TITLE ── */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 0.5rem;
+        }
+
+        /* ── BADGE STATUS ── */
+        .badge-id {
+            background: var(--accent-glow);
+            color: var(--accent-light);
+            border-radius: 8px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        /* ── SEARCH BOX ── */
+        .search-wrapper {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── ACTION BADGE BUTTONS ── */
+        .btn-action-edit {
+            background: rgba(59,130,246,0.15);
+            color: var(--accent-light);
+            border: 1px solid rgba(59,130,246,0.3);
+            font-size: 0.82rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+        }
+
+        .btn-action-edit:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .btn-action-delete {
+            background: rgba(239,68,68,0.12);
+            color: #fca5a5;
+            border: 1px solid rgba(239,68,68,0.25);
+            font-size: 0.82rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+        }
+
+        .btn-action-delete:hover {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--primary); }
+        ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">ICT12367 SPU</a>
-        <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="/">หน้าแรก</a>
-            <a class="nav-link" href="/about">เกี่ยวกับเรา</a>
-            <a class="nav-link" href="/form">แบบฟอร์ม</a>
+        <a class="navbar-brand" href="/">ICT<span>12367</span> SPU</a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <i class="bi bi-list text-light fs-5"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <div class="navbar-nav ms-auto gap-1">
+                <a class="nav-link" href="/"><i class="bi bi-house me-1"></i>หน้าแรก</a>
+                <a class="nav-link" href="/about"><i class="bi bi-images me-1"></i>แกลเลอรี่</a>
+                <a class="nav-link" href="/form"><i class="bi bi-person-plus me-1"></i>เพิ่มข้อมูล</a>
+            </div>
         </div>
     </div>
 </nav>
 
-<div class="container mt-4">
-    {% block content %}
-    {% endblock %}
+<div class="main-content">
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 
-<footer class="text-center text-white py-3 mt-5 bg-dark">
-    © 2026 ICT12367 SPU
+<footer>
+    <div class="container">
+        © 2026 <strong>ICT12367 SPU</strong> &nbsp;·&nbsp; สร้างด้วย <a href="https://www.djangoproject.com/">Django</a>
+    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
